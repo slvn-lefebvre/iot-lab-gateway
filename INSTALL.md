@@ -12,12 +12,22 @@ Dependencies
 
 ```
 sudo apt-get install python-dev python-setuptools socat
+sudo apt install python3-pip
+sudo python -m pip install bottle argparse paste pyelftools
+
+
+
 ```
 
 #### liboml2 ####
 
 Tested version 2.11 compiled from source.
 
+Install dependencies
+```
+sudo apt install ruby gnulib libpopt-dev libxml2-dev libsqlite3-dev pkgconf
+```
+Install liboml2 from sources
 ```
 git clone https://github.com/mytestbed/oml.git && \
 cd oml && \
@@ -65,14 +75,24 @@ make
 sudo make install
 ```
 
+
 #### openocd 0.10.0 ####
+
+Install dependencies 
+```
+sudo apt install make libtool pkg-config autoconf automake texinfo libusb-1.0
+```
+for ubuntu 22 
+```
+sudo apt install make libtool pkg-config autoconf automake texinfo libusb-1.0-0 libhidapi-dev
+```
 
 ```
 git clone https://github.com/ntfreak/openocd openocd10 && \
     cd openocd10 && \
     git checkout v0.10.0 && \
     ./bootstrap && \
-    ./configure --prefix=/opt/openocd-0.10.0 --enable-cmsis-dap --enable-hidapi-libusb && \
+    CFLAGS=-Wno-error ./configure --prefix=/opt/openocd-0.10.0 --enable-cmsis-dap --enable-hidapi-libusb && \
     make && \
     sudo make install && \
     cd .. && rm -rf openocd10
@@ -106,6 +126,14 @@ pip install intelhex
 pip install pyOCD
 ```
 
+### control_node_serial ###
+
+```
+ git clone https://github.com/iot-lab/control_node_serial && \
+    make -C control_node_serial && \
+    cp control_node_serial/control_node_serial_interface /usr/bin/. && \
+    rm -rf control_node_serial
+```
 
 Local installation of the gateway_code
 --------------------------------------
